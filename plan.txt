@@ -1,0 +1,6 @@
+1. Data import
+    a) Import data with proper data types
+2. EDA
+    a) Understand meaning of variables
+    b) Explore domain of the problem
+    ...Work in progress...
