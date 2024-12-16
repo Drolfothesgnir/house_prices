@@ -1,0 +1,143 @@
+1. MSSubClass - This feature categorizes houses based on their structure, age, and design:
+- The first number (1 or 2) typically indicates the number of stories
+- The year 1946 is a key dividing point, separating older and newer constructions
+- PUD stands for Planned Unit Development, which are special residential areas with their own development plans
+
+2. LotFrontage - This is the length (in feet) of the street side of the lot. It's important because:
+- Larger frontage often means more valuable property
+- It affects curb appeal and access to the property
+- Can influence the overall lot size and house placement options
+
+3. LotArea - The total area of the lot in square feet:
+- Combines depth and width of the property
+- Direct indicator of property size
+- Important factor in property value
+
+4. Street - Describes the type of road access:
+- Paved streets generally indicate better infrastructure
+- Gravel roads might suggest more rural or less developed areas
+- Can affect property value and accessibility
+
+5. Alley - Describes secondary access to the property:
+- Important for parking access
+- Can affect property value
+- NA means no alley access, which is common
+
+6. LandContour - Describes the flatness of the property:
+- Lvl (Level) - Flat land, typically most desirable
+- Bnk (Banked) - Property sits above street level
+- HLS (Hillside) - Sloped from side to side
+- Low - Property sits below street level
+
+7. LotConfig - Describes how the lot is situated:
+- Inside lots are surrounded by other properties
+- Corner lots have street exposure on two sides
+- CulDSac lots are often more desirable due to less traffic
+- FR2/FR3 lots have multiple street exposures
+
+8. LandSlope - Indicates the slope severity of the property:
+- Can affect construction costs
+- Influences drainage and potential foundation issues
+- More severe slopes might require special building considerations
+
+9. BldgType - Describes the type of dwelling structure:
+- Distinguishes between single-family homes, duplexes, and townhouses
+- Important for understanding the property type and potential usage
+- Can significantly affect property value
+
+10. MasVnrType - Describes the masonry veneer (decorative exterior layer):
+- Brick and stone veneers often indicate higher quality construction
+- Can affect both aesthetics and maintenance requirements
+- Important for overall exterior quality assessment
+
+11. BsmtExposure - Indicates how much of the basement walls are above ground:
+- Better exposure usually means more natural light
+- Affects potential for basement living space
+- Can influence basement finishing options and value
+
+12. Electrical - Describes the electrical system type:
+- SBrkr (Standard Circuit Breakers) is the modern standard
+- Fuse systems (FuseA, FuseF, FuseP) are older and might need updating
+- Important for safety and potential upgrade costs
+
+13. LowQualFinSF - Areas of low-quality finishing:
+- Indicates spaces with substandard finish work
+- Might suggest need for renovation
+- Can negatively impact property value
+
+14. BsmtHalfBath - A half bathroom (toilet and sink, no shower/bath) in the basement:
+- Adds convenience for basement spaces
+- Can add value if basement is finished
+- Indicates more developed basement space
+
+15. WoodDeckSF - Area of wood deck in square feet:
+- Outdoor living space
+- Adds to overall property value
+- Requires maintenance consideration
+
+16. OpenPorchSF - Area of open porch in square feet:
+- Provides covered outdoor space
+- Adds curb appeal
+- Different from enclosed porches in terms of usability
+
+17. SaleType - How the property was sold:
+- Indicates financing method used
+- Can suggest property condition or circumstances of sale
+- Important for understanding sale context
+
+18. SaleCondition - Special circumstances of sale:
+- Can indicate potential bargains (foreclosures)
+- Helps understand if sale price was influenced by special circumstances
+- Important for analyzing whether the sale price was market-representative
+
+
+1. Duplex:
+- A duplex is a single building divided into two separate living units/homes
+- Usually has separate entrances for each unit
+- Can be side-by-side or one unit above the other
+- Different from a single-family home converted into two units (which would be "2FmCon" in this dataset)
+
+2. LotFrontage:
+- It's not the distance from front door to curb
+- It's the width of the lot along the street side
+- For example, if your lot is rectangular and faces the street, LotFrontage is how wide your property is along that street
+- This measurement is important because wider lots often allow for larger houses or more flexibility in house placement
+
+3. FR2 and FR3 (Frontage):
+- FR2: The lot has streets on two sides (like a corner lot but with more street exposure)
+- FR3: The lot has streets on three sides
+- These lots offer:
+  - More access points
+  - Better natural light
+  - More visibility
+  - Sometimes more parking options
+  - But also less privacy than interior lots
+
+4. Masonry:
+- Masonry refers to building with materials like brick, stone, or concrete blocks
+- Masonry veneer is a non-structural outer layer:
+  - It's decorative and protective
+  - Common materials are brick face, stone, or concrete
+  - Adds to curb appeal and weather protection
+  - Usually indicates higher quality construction
+
+5. Finishing options (particularly for basements):
+- GLQ: Good Living Quarters (high quality, fully finished)
+- ALQ: Average Living Quarters (comfortable but not premium)
+- BLQ: Below Average Living Quarters (functional but basic)
+- Rec: Recreation room quality
+- LwQ: Low quality finishing
+- Unf: Unfinished
+
+6. Low-quality finishing (LowQualFinSF):
+- Areas finished with minimal cost materials
+- May include:
+  - Cheap paneling instead of drywall
+  - Basic concrete floors instead of proper flooring
+  - Minimal insulation
+  - Poor lighting
+  - Rough or incomplete finishing work
+  - Non-standard room layouts or configurations
+- Often indicates DIY work or budget constraints
+- Might need renovation or upgrading
+- Generally detracts from home value
