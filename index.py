@@ -92,25 +92,8 @@ train_df = load_train_data()
 #
 # print(train_df.info())
 #
-# print(train_df.isna().sum()[train_df.isna().sum() > 0])
-# LotFrontage      259  // need to investigate
-# Alley           1369
-# MasVnrType       872
-# MasVnrArea         8
-# BsmtQual          37
-# BsmtCond          37
-# BsmtExposure      38
-# BsmtFinType1      37
-# BsmtFinType2      38
-# Electrical         1 // need to investigate
-# FireplaceQu      690
-# GarageType        81
-# GarageYrBlt       81
-# GarageFinish      81
-# GarageQual        81
-# GarageCond        81
-# PoolQC          1453
-# Fence           1179
-# MiscFeature     1406
-
-# print(train_df["OverallQual"].unique())
+na_info = train_df.isna().sum()[train_df.isna().sum() > 0]
+print(na_info)
+# for col in na_info.index:
+#     print(col)
+#     print(train_df[col].unique())
