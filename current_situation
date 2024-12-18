@@ -1,0 +1,36 @@
+current situation #1:
+    So I started Kaggle House Prices project. The goal is to predict house price based on 79 variables.
+    I've loaded data, done some cleaning.
+    Here are dimensions of datasets:
+    Train data: (1460, 81)
+    Test data: (1459, 80)
+    There are some missing values in both train and test datasets:
+        train df NA counts
+        LotFrontage    259
+        MasVnrArea       8
+        Electrical       1
+        GarageYrBlt     81
+
+        test df NA counts
+        MSZoning          4
+        LotFrontage     227
+        Utilities         2
+        Exterior1st       1
+        Exterior2nd       1
+        MasVnrArea       15
+        BsmtFinSF1        1
+        BsmtFinSF2        1
+        BsmtUnfSF         1
+        TotalBsmtSF       1
+        BsmtFullBath      2
+        BsmtHalfBath      2
+        KitchenQual       1
+        Functional        2
+        GarageYrBlt      78
+        GarageCars        1
+        GarageArea        1
+        SaleType          1
+
+    For now the main concern is the missing of LotFrontage values.
+    LotFrontage means linear feet of street connected to property.
+    For some reason there are 16% - 18% of LotFrontage values which are missing.

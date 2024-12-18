@@ -1,7 +1,7 @@
 import pandas as pd
 
-def load_train_data():
-    df = pd.read_csv("data/train.csv")
+def load_data(pathname):
+    df = pd.read_csv(pathname)
     # converting int64 columns to int32
     int_vars = df.select_dtypes(include=["int64"]).columns
 
@@ -186,5 +186,7 @@ def load_train_data():
     for var in cat_vars:
         df[var] = df[var].astype("category")
 
-    print(df.info())
+    # converting MSSubClass into categorical type
+    df["MSSubClass"] = df["MSSubClass"].astype("category")
+
     return df

@@ -521,3 +521,85 @@ SaleCondition: Condition of sale // explain this please
        Alloca	Allocation - two linked properties with separate deeds, typically condo with a garage unit	
        Family	Sale between family members
        Partial	Home was not completed when last assessed (associated with New Homes)
+
+Id -> int
+MSSubClass -> fct
+MSZoning -> fct
+LotFrontage -> float
+LotArea -> float
+Street -> fct
+Alley -> fct
+LotShape -> fct ordered
+LandContour -> fct
+Utilities -> fct ordered
+LotConfig -> fct
+LandSlope -> fct ordered
+Neighborhood -> fct
+Condition1 -> fct
+Condition2 -> fct
+BldgType -> fct
+HouseStyle -> fct
+OverallQual -> fct ordered
+OverallCond -> fct ordered
+YearBuilt -> int
+YearRemodAdd -> int
+RoofStyle -> fct
+RoofMatl -> fct
+Exterior1st -> fct
+Exterior2nd -> fct
+MasVnrType -> fct
+MasVnrArea -> float
+ExterQual -> fct ordered
+ExterCond -> fct ordered
+Foundation -> fct
+BsmtQual -> fct ordered
+BsmtCond -> fct ordered
+BsmtExposure -> fct ordered
+BsmtFinType1 -> fct ordered
+BsmtFinSF1 -> float
+BsmtFinType2 -> fct ordered
+BsmtFinSF2 -> float
+BsmtUnfSF -> float
+TotalBsmtSF -> float
+Heating -> fct
+HeatingQC -> fct ordered
+CentralAir -> fct
+Electrical -> fct
+1stFlrSF -> float
+2ndFlrSF -> float
+LowQualFinSF -> float
+GrLivArea -> float
+BsmtFullBath -> int
+BsmtHalfBath -> int
+FullBath -> int
+HalfBath -> int
+BedroomAbvGr -> int
+KitchenAbvGr -> int
+KitchenQual -> fct ordered
+TotRmsAbvGrd -> int
+Functional -> fct ordered
+Fireplaces -> int
+FireplaceQu -> fct ordered
+GarageType -> fct
+GarageYrBlt -> int
+GarageFinish -> fct ordered
+GarageCars -> int
+GarageArea -> float
+GarageQual -> fct ordered
+GarageCond -> fct ordered
+PavedDrive -> fct
+WoodDeckSF -> float
+OpenPorchSF -> float
+EnclosedPorch -> float
+3SsnPorch -> float
+ScreenPorch -> float
+PoolArea -> float
+PoolQC -> fct ordered
+Fence -> fct ordered
+MiscFeature -> fct
+MiscVal -> float
+MoSold -> fct
+YrSold -> fct
+SaleType -> fct
+SaleCondition -> fct
+SalePrice -> float

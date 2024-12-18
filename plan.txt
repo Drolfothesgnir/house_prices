@@ -1,6 +1,21 @@
 1. Data import
-    a) Import data with proper data types
-2. EDA
+    a) Import data with proper data types.
+    b) Complete data (fill NA values with proper "NA" categories). no imputation.
+2. EDA (different stages can be done simultaneously and concurrently)
     a) Understand meaning of variables
+        1. Explore missing values.
+        2. Create imputation strategy for every column with missing variables.
+        3. Search for outliers and high-leverage points. Understand whether they are ok or not. Transform them if not.
     b) Explore domain of the problem
-    ...Work in progress...
+        1. Understand what are the main influencers of the House Price.
+        2. Check our assumption about impact of different variables with visualisations and hypotheses testing.
+        3. Perform cluster based analysis (since a lot of variables are correlated)
+            a) Assign different variables to location clusters (Basement, Exterior, Garage, etc.)
+            b) Engineer assembling features (if it makes sense)
+
+    c) Explore overall relations in the dataset with techniques like PCA
+
+3. Feature engineering
+    a) Given all knowledge we have we create new features to simplify predictor space, remove multicollinearity and create features with more predictive power
+
+4. Model selection and tuning
