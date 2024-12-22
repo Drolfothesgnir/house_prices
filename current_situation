@@ -44,8 +44,24 @@ current situation #2:
     I've also performed special NA filling for MasVnrType and MasVnrArea, since MasVnrType has special
     NA value - None
 
-current situation #2:
+current situation #3:
     I've created new has_garage and lot_frontage_missing features. I've filled missing GarageYrBlt with YearBuilt.
     In the test set there are two values with GarageType Detchd but no GarageYrBlt. One of them contains only GarageCars and
     GarageArea values. Other contains no info, so I make its GarageType NA. After completing filling of NA for test set
     I should validate if some NA values which are categorical now or 0 should be imputed. Don't forget!
+
+    Here is Na info after cleaning so far:
+        train df NA counts
+        LotFrontage    259
+
+        test df NA counts
+        MSZoning         4
+        LotFrontage    227
+        Utilities        2
+        Exterior1st      1
+        Exterior2nd      1
+        KitchenQual      1
+        Functional       2
+        SaleType         1
+
+    All of these variables must be imputed.

@@ -58,7 +58,17 @@ def load_data(pathname):
     df["MasVnrType"] = df["MasVnrType"].fillna("None")
 
     # filling numerical NA values
-    num_vars = ["MasVnrArea", "GarageCars", "GarageArea"]
+    num_vars = [
+        "MasVnrArea",
+        "GarageCars",
+        "GarageArea",
+        "BsmtFinSF1",
+        "BsmtFinSF2",
+        "BsmtUnfSF",
+        "BsmtFullBath",
+        "BsmtHalfBath",
+        "TotalBsmtSF"
+    ]
     for var in num_vars:
         df[var] = df[var].fillna(0)
 
