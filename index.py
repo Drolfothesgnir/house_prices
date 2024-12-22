@@ -2,20 +2,19 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from utils.load_data import load_data
-from feature_engineering import augment_by_lot_frontage_missing
+from feature_engineering import engineer_features
 
 train_df = load_data("data/train.csv")
+train_df = engineer_features(train_df)
 test_df = load_data("data/test.csv")
+test_df = engineer_features(test_df)
+
 print(train_df.shape)
 print(test_df.shape)
 # (1460, 81)
 
-# print(train_df.columns)
-
-# print(train_df.describe())
-#
 print(train_df.info())
-#
+
 na_info = train_df.isna().sum()[train_df.isna().sum() > 0]
 print("train df NA counts")
 print(na_info)
@@ -34,19 +33,24 @@ pd.set_option('display.width', None)
 
 print(train_df[train_df["Electrical"].isna()].transpose())
 
-# Exploration of LotFrontage missing values
+print(train_df["Electrical"].value_counts())
 
-# train_df[train_df["LotFrontage"].isna()]["LotArea"].hist()
-# # plt.show()
-#
-#
-# train_df = augment_by_lot_frontage_missing(train_df)
-#
-# related_vars = ["Street", "Alley", "LotShape", "LandContour", "LotConfig", "LandSlope", "Neighborhood"]
-#
-# for var in related_vars:
-#     print(f"\n\n\nDistribution of {var} for missing lot frontage")
-#     print(train_df[train_df["lot_frontage_missing"]][var].value_counts(normalize=True))
-#     print(f"\n\nDistribution of {var} for available lot frontage")
-#     print(train_df[~train_df["lot_frontage_missing"]][var].value_counts(normalize=True))
+# Given other features are normal, particularly Utilities is AllPub, and construction year is 2006
+# I think Electrical value is missing completely at random. I will impute it with SBrkr
+train_df["Electrical"] = train_df["Electrical"].fillna("SBrkr")
+
+na_info = train_df.isna().sum()[train_df.isna().sum() > 0]
+print("train df NA counts")
+print(na_info)
+
+na_info = test_df.isna().sum()[test_df.isna().sum() > 0]
+print("test df NA counts")
+print(na_info)
+# Exploration of missing GarageYrBlt
+
+# there is one suspicious garage in the test set, which has type detached and no other info
+# I'll convert it into an NA garage type
+qry = (test_df["has_garage"] == 0) & (test_df["GarageType"].astype(str) != "NA")
+test_df.loc[qry, "GarageType"] = "NA"
+
 

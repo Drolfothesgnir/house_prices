@@ -34,3 +34,18 @@ current situation #1:
     For now the main concern is the missing of LotFrontage values.
     LotFrontage means linear feet of street connected to property.
     For some reason there are 16% - 18% of LotFrontage values which are missing.
+
+current situation #2:
+    Exploring single missing Electrical value, I've found that the observation has normal other predictors.
+    Utilities is AllPub, which means the house has normal electrical circuit. It was built in 2006,
+    which suggests it should has modern electrical circuits. Overall quality is normal, not poor. So I think
+    the value is missing completely at random, and have imputed it with the mode - SBrkr.
+
+    I've also performed special NA filling for MasVnrType and MasVnrArea, since MasVnrType has special
+    NA value - None
+
+current situation #2:
+    I've created new has_garage and lot_frontage_missing features. I've filled missing GarageYrBlt with YearBuilt.
+    In the test set there are two values with GarageType Detchd but no GarageYrBlt. One of them contains only GarageCars and
+    GarageArea values. Other contains no info, so I make its GarageType NA. After completing filling of NA for test set
+    I should validate if some NA values which are categorical now or 0 should be imputed. Don't forget!

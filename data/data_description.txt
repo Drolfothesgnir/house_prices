@@ -1,4 +1,4 @@
-MSSubClass: Identifies the type of dwelling involved in the sale.	// explain this please
+MSSubClass: Identifies the type of dwelling involved in the sale.
 
         20	1-STORY 1946 & NEWER ALL STYLES
         30	1-STORY 1945 & OLDER
@@ -28,16 +28,16 @@ MSZoning: Identifies the general zoning classification of the sale.
        RP	Residential Low Density Park 
        RM	Residential Medium Density
 	
-LotFrontage: Linear feet of street connected to property // explain this please
+LotFrontage: Linear feet of street connected to property
 
-LotArea: Lot size in square feet // explain this please
+LotArea: Lot size in square feet
 
-Street: Type of road access to property // explain this please
+Street: Type of road access to property
 
        Grvl	Gravel	
        Pave	Paved
        	
-Alley: Type of alley access to property // explain this please
+Alley: Type of alley access to property
 
        Grvl	Gravel
        Pave	Paved
@@ -50,7 +50,7 @@ LotShape: General shape of property
        IR2	Moderately Irregular
        IR3	Irregular
        
-LandContour: Flatness of the property // explain this please
+LandContour: Flatness of the property
 
        Lvl	Near Flat/Level	
        Bnk	Banked - Quick and significant rise from street grade to building
@@ -64,7 +64,7 @@ Utilities: Type of utilities available
        NoSeWa	Electricity and Gas Only
        ELO	Electricity only	
 	
-LotConfig: Lot configuration // explain this please
+LotConfig: Lot configuration
 
        Inside	Inside lot
        Corner	Corner lot
@@ -72,7 +72,7 @@ LotConfig: Lot configuration // explain this please
        FR2	Frontage on 2 sides of property
        FR3	Frontage on 3 sides of property
 	
-LandSlope: Slope of property // explain this please
+LandSlope: Slope of property
 		
        Gtl	Gentle slope
        Mod	Moderate Slope	
@@ -130,7 +130,7 @@ Condition2: Proximity to various conditions (if more than one is present)
        RRNe	Within 200' of East-West Railroad
        RRAe	Adjacent to East-West Railroad
 	
-BldgType: Type of dwelling // explain this please
+BldgType: Type of dwelling
 		
        1Fam	Single-family Detached	
        2FmCon	Two-family Conversion; originally built as one-family dwelling
@@ -239,7 +239,7 @@ Exterior2nd: Exterior covering on house (if more than one material)
        Wd Sdng	Wood Siding
        WdShing	Wood Shingles
 	
-MasVnrType: Masonry veneer type // explain this please
+MasVnrType: Masonry veneer type
 
        BrkCmn	Brick Common
        BrkFace	Brick Face
@@ -292,7 +292,7 @@ BsmtCond: Evaluates the general condition of the basement
        Po	Poor - Severe cracking, settling, or wetness
        NA	No Basement
 	
-BsmtExposure: Refers to walkout or garden level walls // explain this please
+BsmtExposure: Refers to walkout or garden level walls
 
        Gd	Good Exposure
        Av	Average Exposure (split levels or foyers typically score average or above)	
@@ -350,7 +350,7 @@ CentralAir: Central air conditioning
        N	No
        Y	Yes
 
-Electrical: Electrical system // explain this please
+Electrical: Electrical system
 
        SBrkr	Standard Circuit Breakers & Romex
        FuseA	Fuse Box over 60 AMP and all Romex wiring (Average)	
@@ -362,13 +362,13 @@ Electrical: Electrical system // explain this please
  
 2ndFlrSF: Second floor square feet
 
-LowQualFinSF: Low quality finished square feet (all floors) // explain this please
+LowQualFinSF: Low quality finished square feet (all floors)
 
 GrLivArea: Above grade (ground) living area square feet
 
 BsmtFullBath: Basement full bathrooms
 
-BsmtHalfBath: Basement half bathrooms // explain this please
+BsmtHalfBath: Basement half bathrooms
 
 FullBath: Full bathrooms above grade
 
@@ -457,9 +457,9 @@ PavedDrive: Paved driveway
        P	Partial Pavement
        N	Dirt/Gravel
 		
-WoodDeckSF: Wood deck area in square feet // explain this please
+WoodDeckSF: Wood deck area in square feet
 
-OpenPorchSF: Open porch area in square feet // explain this please
+OpenPorchSF: Open porch area in square feet
 
 EnclosedPorch: Enclosed porch area in square feet
 
@@ -500,7 +500,7 @@ MoSold: Month Sold (MM)
 
 YrSold: Year Sold (YYYY)
 
-SaleType: Type of sale // explain this please
+SaleType: Type of sale
 		
        WD 	Warranty Deed - Conventional
        CWD	Warranty Deed - Cash
@@ -513,7 +513,7 @@ SaleType: Type of sale // explain this please
        ConLD	Contract Low Down
        Oth	Other
 		
-SaleCondition: Condition of sale // explain this please
+SaleCondition: Condition of sale
 
        Normal	Normal Sale
        Abnorml	Abnormal Sale -  trade, foreclosure, short sale

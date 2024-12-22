@@ -48,11 +48,22 @@ def load_data(pathname):
         "PoolQC",
         "Fence",
         "MiscFeature",
-        "MasVnrType"
+        # "MasVnrType"
     ]
 
     for var in na_values:
         df[var] = df[var].fillna("NA")
+
+    # MasVnrType has special NA value - None
+    df["MasVnrType"] = df["MasVnrType"].fillna("None")
+
+    # filling numerical NA values
+    num_vars = ["MasVnrArea", "GarageCars", "GarageArea"]
+    for var in num_vars:
+        df[var] = df[var].fillna(0)
+
+    # filling missing garage year build values with house date built
+    df['GarageYrBlt'] = df["GarageYrBlt"].fillna(df["YearBuilt"])
 
     # converting ordinal categories
     ordered_cats = {
