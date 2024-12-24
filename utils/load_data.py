@@ -14,25 +14,6 @@ def load_data(pathname):
     for var in float_vars:
         df[var] = df[var].astype("float32")
 
-    # completing NA values for categories
-    # na_values = {
-    #     "Alley": "No alley access",
-    #     "BsmtQual": "No Basement",
-    #     "BsmtCond": "No Basement",
-    #     "BsmtExposure": "No Basement",
-    #     "BsmtFinType1": "No Basement",
-    #     "BsmtFinType2": "No Basement",
-    #     "FireplaceQu": "No Fireplace",
-    #     "GarageType": "No Garage",
-    #     "GarageFinish": "No Garage",
-    #     "GarageQual": "No Garage",
-    #     "GarageCond": "No Garage",
-    #     "PoolQC": "No Pool",
-    #     "Fence": "No Fence",
-    #     "MiscFeature": "None",
-    #     "MasVnrType": "None"
-    # }
-
     na_values = [
         "Alley",
         "BsmtQual",
