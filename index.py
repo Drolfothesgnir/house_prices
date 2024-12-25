@@ -54,13 +54,15 @@ test_df.loc[qry, "GarageType"] = "NA"
 
 # Checking data consistency after initial cleaning
 train_df_check = check_data_consistency(train_df)
+test_df_check = check_data_consistency(test_df)
+
 print(sum(~train_df_check["garage_type_consistent"]))
 # 0
 print(sum(~train_df_check["garage_features_consistent"]))
 # 0
 print(sum(~train_df_check["garage_area_reasonable"]))
 # 55 need to investigate
-test_df_check = check_data_consistency(test_df)
+
 print(sum(~test_df_check["garage_type_consistent"]))
 # 0
 print(sum(~test_df_check["garage_features_consistent"]))
@@ -73,11 +75,12 @@ print(sum(~test_df_check["garage_features_consistent"]))
 # GarageArea                360.0
 # GarageQual                   NA
 # GarageCond                   NA
-
 # need to explore this one
+
 print(sum(~test_df_check["garage_area_reasonable"]))
 # 51
 
+# checking basement data consistency
 print(sum(~train_df_check["basement_features_consistent"]))
 # 1
 # train df has one
@@ -102,5 +105,38 @@ print(sum(~test_df_check["basement_features_consistent"]))
 print(sum(~test_df_check["has_consistent_second_finished_area"]))
 # 1237
 
-print(sum(~train_df_check["basement_areas_match"]))
+print(sum(~test_df_check["basement_areas_match"]))
 # 0
+
+# checking masonry veneer data consistency
+print(sum(~train_df_check["mas_vnr_consistent"]))
+# 7
+
+print(sum(~test_df_check["mas_vnr_consistent"]))
+# 4
+
+# Dealing with basement second finished area
+train_df_bfa2 = train_df_check[~train_df_check["has_consistent_second_finished_area"]]
+print(train_df_bfa2["BsmtFinType2"].value_counts())
+# Unf    1256
+# NA        1
+# GLQ       0
+# BLQ       0
+# ALQ       0
+# LwQ       0
+# Rec       0
+
+print(train_df_bfa2[train_df_bfa2["BsmtFinType2"].astype(str) == "NA"].transpose())
+# Id                                       333
+# BsmtQual                                  Gd
+# BsmtCond                                  TA
+# BsmtExposure                              No
+# BsmtFinType1                             GLQ
+# BsmtFinSF1                              1124
+# BsmtFinType2                              NA <- have to do something about it
+# BsmtFinSF2                               479
+# BsmtUnfSF                               1603
+# TotalBsmtSF                             3206
+
+print(sum((train_df_bfa2["BsmtFinType2"].astype(str) == "Unf") & (train_df_bfa2["BsmtFinSF2"] == 0)))
+# 1256

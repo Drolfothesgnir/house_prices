@@ -65,3 +65,96 @@ current situation #3:
         SaleType         1
 
     All of these variables must be imputed.
+
+current situation #4:
+    I've performed consistency check for variables which I've cleaned. Here is the result:
+        Check if newly created has_garage feature is inconsistent with actual garage type
+            train df: 0
+            test df: 0
+
+        Check if some garage features are missing for non missing garage type:
+            train df: 0
+            test df: 1
+                Id                         2127
+                GarageType               Detchd
+                GarageYrBlt              1910.0
+                GarageFinish                 NA
+                GarageCars                  1.0
+                GarageArea                360.0
+                GarageQual                   NA
+                GarageCond                   NA
+
+        Check if there are garages with suspicious garage area to car places ratio:
+            train df: 55
+            test df: 51
+
+        Check if some basement features missing for non-missing basement type:
+            train df: 1
+                Id                                       949
+                BsmtQual                                  Gd
+                BsmtCond                                  TA
+                BsmtExposure                              NA
+                BsmtFinType1                             Unf
+                BsmtFinSF1                                 0
+                BsmtFinType2                             Unf
+                BsmtFinSF2                                 0
+                BsmtUnfSF                                936
+                TotalBsmtSF                              936
+
+            test df: 7
+
+        Check if some basements have inconsistent second finished area:
+            train df: 1257
+            test df: 1237
+
+        Check if some basement areas have finished area + unfinished area not equal to total basement area:
+            train df: 0
+            test df: 0
+
+        Check if some housed have inconsistent masonry veneer area if have the exterior:
+            train df: 7
+            test df: 4
+
+    Next I want to deal with basement second finished area, garage area, masonry veneer area and garage and basement
+    features in that order.
+
+current situation #5:
+    I've investigated inconsistencies with basement second finished area:
+        train_df_bfa2 = train_df_check[~train_df_check["has_consistent_second_finished_area"]]
+        print(train_df_bfa2["BsmtFinType2"].value_counts())
+        # Unf    1256
+        # NA        1
+        # GLQ       0
+        # BLQ       0
+        # ALQ       0
+        # LwQ       0
+        # Rec       0
+
+    It turned out that a lot of houses which have Unfinished second area have 0 finished second area.
+    So instead of changing the data I've hanged consistency criterion. After the change there is 1 inconsistent observation
+    in the train set and 2 in the test set:
+        train df:
+            Id                                       333
+            BsmtQual                                  Gd
+            BsmtCond                                  TA
+            BsmtExposure                              No
+            BsmtFinType1                             GLQ
+            BsmtFinSF1                              1124
+            BsmtFinType2                              NA <- have to do something about it
+            BsmtFinSF2                               479
+            BsmtUnfSF                               1603
+            TotalBsmtSF                             3206
+
+        test df:
+            Id                                      1471     2285
+            BsmtQual                                  Gd       Gd
+            BsmtCond                                  TA       TA
+            BsmtExposure                              No       No
+            BsmtFinType1                             GLQ      GLQ
+            BsmtFinSF1                            1051.0    632.0
+            BsmtFinType2                             BLQ      Unf
+            BsmtFinSF2                               0.0      6.0
+            BsmtUnfSF                              354.0    423.0
+            TotalBsmtSF                           1405.0   1061.0
+
+    Test set entries seem ok, so I decided to leave them alone. The train set entry must be imputed with new BsmtFinType2.

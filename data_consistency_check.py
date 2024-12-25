@@ -41,9 +41,9 @@ def check_basement_consistency(df):
                                      (df["TotalBsmtSF"] > 0)))
 
     # Check second finished area consistency
-    has_consistent_second_finished_area = ((df["BsmtFinType2"].astype(str) == "NA") &
+    has_consistent_second_finished_area = ((df["BsmtFinType2"].astype(str).isin(["NA", "Unf"])) &
                                            (df["BsmtFinSF2"] == 0)) | \
-                                          ((df["BsmtFinType2"].astype(str) != "NA") &
+                                          ((~df["BsmtFinType2"].astype(str).isin(["NA", "Unf"])) &
                                            (df["BsmtFinSF2"] > 0))
 
     # Check if areas sum up correctly
@@ -56,9 +56,16 @@ def check_basement_consistency(df):
 
     return df
 
+def check_masonry_veneer_data_consistency(df):
+    mas_vnr_consistent = (((df["MasVnrType"].astype(str) == "None") & (df["MasVnrArea"] < 1)) |
+                          ((df["MasVnrType"].astype(str) != "None") & (df["MasVnrArea"] > 0)))
+    df["mas_vnr_consistent"] = mas_vnr_consistent
+    return df
+
 
 def check_data_consistency(df):
     df = check_garage_consistency(df)
     df = check_garage_area_reasonable(df)
     df = check_basement_consistency(df)
+    df = check_masonry_veneer_data_consistency(df)
     return df
