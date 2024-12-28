@@ -54,7 +54,7 @@ def load_data(pathname):
         df[var] = df[var].fillna(0)
 
     # filling missing garage year build values with house date built
-    df['GarageYrBlt'] = df["GarageYrBlt"].fillna(df["YearBuilt"])
+    df['GarageYrBlt'] = df["GarageYrBlt"].fillna(df["YearBuilt"]).astype('int32')
 
     # converting ordinal categories
     ordered_cats = {

@@ -131,7 +131,7 @@ current situation #5:
         # Rec       0
 
     It turned out that a lot of houses which have Unfinished second area have 0 finished second area.
-    So instead of changing the data I've hanged consistency criterion. After the change there is 1 inconsistent observation
+    So instead of changing the data I've changed consistency criterion. After the change there is 1 inconsistent observation
     in the train set and 2 in the test set:
         train df:
             Id                                       333
@@ -158,3 +158,10 @@ current situation #5:
             TotalBsmtSF                           1405.0   1061.0
 
     Test set entries seem ok, so I decided to leave them alone. The train set entry must be imputed with new BsmtFinType2.
+
+Current situation #6:
+    I've explored "suspicious" garages. There are 11 too-small-area garages and 44 too-big-area garages in the train set. 
+    Exploration showed that all of them are fairly normal houses, with their garage sizes can be explained with other features.
+    In the test set proportion of such homes is almost the same, so I decided not to explore it. Maybe it's a mistake.
+    There are non-None MasVnrType houses with 0 MasVnrArea and houses with None MasVnrType houses with reasonable MasVnrArea. 
+    First ones I've made as None MasVnrType, and second ones I've imputed with BrkFace in MasVnrType.

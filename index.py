@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
+import seaborn as sns
 from utils.load_data import load_data
 from feature_engineering import engineer_features
 from data_consistency_check import check_data_consistency
@@ -140,3 +143,27 @@ print(train_df_bfa2[train_df_bfa2["BsmtFinType2"].astype(str) == "NA"].transpose
 
 print(sum((train_df_bfa2["BsmtFinType2"].astype(str) == "Unf") & (train_df_bfa2["BsmtFinSF2"] == 0)))
 # 1256
+
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot GarageCars histogram
+ax1.hist(train_df['GarageCars'], bins=5, edgecolor='black')
+ax1.set_title('Distribution of Garage Cars')
+ax1.set_xlabel('Number of Cars')
+ax1.set_ylabel('Count')
+
+# Plot GarageArea histogram
+# Skewed to the right
+ax2.hist(train_df['GarageArea'], bins=30, edgecolor='black')
+ax2.set_title('Distribution of Garage Area')
+ax2.set_xlabel('Area (square feet)')
+ax2.set_ylabel('Count')
+
+# Adjust layout to prevent overlap
+plt.tight_layout()
+
+# Save the plot
+plt.savefig('garage_distributions.png')
+plt.close()
+
