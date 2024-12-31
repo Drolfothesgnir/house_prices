@@ -31,25 +31,41 @@ def check_garage_area_reasonable(df):
 
 
 def check_basement_consistency(df):
-    # Basic feature consistency check
+    """
+    Check consistency of basement-related features.
+    
+    Args:
+        df: DataFrame with basement features
+    Returns:
+        DataFrame with added consistency check columns
+    """
+    # Basic feature consistency check - unchanged as it works well
     basement_features_consistent = ((df["has_basement"] == 0) |
-                                    ((df["BsmtQual"].astype(str) != "NA") &
-                                     (df["BsmtCond"].astype(str) != "NA") &
-                                     (df["BsmtExposure"].astype(str) != "NA") &
-                                     (df["BsmtFinType1"].astype(str) != "NA") &
-                                     (df["BsmtFinSF1"] >= 0) &  # Changed from > 0 to >= 0
-                                     (df["TotalBsmtSF"] > 0)))
+                                  ((df["BsmtQual"].astype(str) != "NA") &
+                                   (df["BsmtCond"].astype(str) != "NA") &
+                                   (df["BsmtExposure"].astype(str) != "NA") &
+                                   (df["BsmtFinType1"].astype(str) != "NA") &
+                                   (df["BsmtFinSF1"] >= 0) &
+                                   (df["TotalBsmtSF"] > 0)))
 
-    # Check second finished area consistency
-    has_consistent_second_finished_area = ((df["BsmtFinType2"].astype(str).isin(["NA", "Unf"])) &
-                                           (df["BsmtFinSF2"] == 0)) | \
-                                          ((~df["BsmtFinType2"].astype(str).isin(["NA", "Unf"])) &
-                                           (df["BsmtFinSF2"] > 0))
+    # Modified second finished area consistency check
+    # Now allows for BsmtFinType2 to be any value if BsmtFinSF2 is 0
+    has_consistent_second_finished_area = (
+        # Case 1: Zero area - any finish type is ok
+        (df["BsmtFinSF2"] == 0) |
+        # Case 2: Non-zero area must have valid finish type
+        ((df["BsmtFinSF2"] > 0) &
+         (~df["BsmtFinType2"].astype(str).isin(["NA"])))
+    )
 
-    # Check if areas sum up correctly
-    area_sums_match = (df["BsmtFinSF1"] + df["BsmtFinSF2"] + df["BsmtUnfSF"] -
-                       df["TotalBsmtSF"]).abs() < 1  # Using small tolerance for float comparison
+    # Area check - unchanged but added more descriptive tolerance value
+    FLOAT_TOLERANCE = 1e-6  # explicit small value for float comparison
+    area_sums_match = (df["BsmtFinSF1"] + 
+                      df["BsmtFinSF2"] + 
+                      df["BsmtUnfSF"] - 
+                      df["TotalBsmtSF"]).abs() < FLOAT_TOLERANCE
 
+    # Add check results to DataFrame
     df["basement_features_consistent"] = basement_features_consistent
     df["has_consistent_second_finished_area"] = has_consistent_second_finished_area
     df["basement_areas_match"] = area_sums_match

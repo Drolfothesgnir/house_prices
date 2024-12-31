@@ -165,3 +165,14 @@ Current situation #6:
     In the test set proportion of such homes is almost the same, so I decided not to explore it. Maybe it's a mistake.
     There are non-None MasVnrType houses with 0 MasVnrArea and houses with None MasVnrType houses with reasonable MasVnrArea. 
     First ones I've made as None MasVnrType, and second ones I've imputed with BrkFace in MasVnrType.
+
+Current situation #7:
+    I've fixed single inconsistent garage in the test set, one with ID 2127. I've imputed missing features based on modes of 
+    entries of GarageType vs GarageFinish, GarageType vs GarageQual and GarageQual vs OverallQual tables. Now I need to clean up
+    basement features and then proceed with imputation of smaller problems.
+
+Current situation #8:
+    I've imputed and cleaned basement and garage features, with group medians
+    based on particular observations data, since there were only few of them.
+    Also some basement features were actually consistence, and problem was in my criterion.
+    Now I need to impute test set variables.
