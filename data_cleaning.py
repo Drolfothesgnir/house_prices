@@ -159,6 +159,34 @@ def impute_basement_area_333(df):
 
     return df
 
+def impute_utilities(df):
+    imputation_data = {
+        1916: "NoSeWa",
+        1946: "NoSeWa"
+    }
+
+    for id, ut in imputation_data.items():
+        mask = (df["Id"] == id) & \
+                (df["Utilities"].isna())
+        if mask.any():
+            df.loc[mask, "Utilities"] = ut
+
+    return df
+
+def impute_functional(df):
+    imputation_data = {
+        2217: "Typ",
+        2474: "Maj1"
+    }
+
+    for id, func in imputation_data.items():
+        mask = (df["Id"] == id) & \
+                (df["Functional"].isna())
+        if mask.any():
+            df.loc[mask, "Functional"] = func
+
+    return df
+
 def clean_data(df):
     df = fix_electrical_1380(df)
     df = fix_garage_type(df)
@@ -168,4 +196,6 @@ def clean_data(df):
     df = impute_garage_2127(df)
     df = impute_basement_area_333(df)
     df = impute_mszoning(df)
+    df = impute_utilities(df)
+    df = impute_functional(df)
     return df

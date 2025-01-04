@@ -178,9 +178,9 @@ Current situation #8:
     Now I need to impute test set variables.
 
 Current situation #9:
-    I've tried to investigate missingness of MSZoning in the test set. I've tried to fit CatBoost and RF and Log Reg but there is 
+    I've tried to investigate missingness of MSZoning in the test set, Ids 1916, 2217,	2251 and 2905. I've tried to fit CatBoost and RF and Log Reg but there is 
     class imbalance in the response so I haven't figured out much. Instead I've just checked conditional probabilities of
-    MSZoning given "Neighborhood", "BldgType", "LotArea_Cat", "MSSubClass" and "Condition1".
+    MSZoning given "Neighborhood", "BldgType", "LotArea_Cat", "MSSubClass" and "Condition1". LotArea_Cat is LotArea cut into quintiles, to make it categorical.
     Here is the summary:
               Neighborhood_IDOTRR  Neighborhood_Mitchel  BldgType_1Fam  LotArea_Cat_Very Large  MSSubClass_30  MSSubClass_20  MSSubClass_70  Condition1_Norm  Condition1_Artery
     MSZoning                                                                                                                                                                   
@@ -192,4 +192,26 @@ Current situation #9:
 
     I believe Neighborhood is main predictor of zone type, so I will use neighborhood based predictions for the missing data,
     except Id=2217, where MSSubClass-based MSZoning probability is ~95% RL.
- 
+
+Current situation #10:
+    I've tried to investigate missing Utilities values. There are 2 such houses in the test set, Ids 1916 and 1946. So these houses are very old and
+    in poor condition. They have old but available electric circuits and gas heating. Therefore I'll put NoSeWa into NA places.
+
+    I've checked missing Functional values, two houses with Ids 2217 and 2474. Again, because of class imabalance, it's hard to perform meaningful statisical tests.
+    And again I've used conditional probabilities of Functional given "OverallCond", "OverallQual" and "SaleCondition":
+                        OverallCond_5  OverallCond_1  OverallQual_1  OverallQual_4  SaleCondition_Abnorml
+            Functional                                                                                   
+            Typ              0.956151            0.0            0.5       0.896552               0.920792
+            Min1             0.015834            0.0            0.0       0.017241               0.029703
+            Min2             0.012180            0.0            0.0       0.068966               0.019802
+            Mod              0.004872            0.0            0.0       0.017241               0.009901
+            Maj1             0.008526            1.0            0.5       0.000000               0.000000
+            Maj2             0.001218            0.0            0.0       0.000000               0.009901
+            Sev              0.001218            0.0            0.0       0.000000               0.009901
+            Sal              0.000000            0.0            0.0       0.000000               0.000000
+
+    I've imputed 2 missing values based on this data. I know it's not very smart to use this approach, but I can't get enough
+    domain knowledge. Maybe I'm not smart enough to see relationships in the data. My main predictor is OverallCond. It's 1
+    for 2474, so I've used Maj1 Functional for it, which means serious damage, but not completely devastated. For 2217 OverallCond
+    is 5, which suggests that functionality of the house is typical (Typ).
+    
