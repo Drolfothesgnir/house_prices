@@ -134,6 +134,22 @@ def impute_garage_2127(df):
     
     return df
 
+def impute_mszoning(df):
+    imputation_data = {
+        1916: "RM",
+        2217: "RL",
+        2251: "RM",
+        2905: "RL"
+    }
+
+    for id, msz in imputation_data.items():
+        mask = (df["Id"] == id) & \
+                (df["MSZoning"].isna())
+        if mask.any():
+            df.loc[mask, "MSZoning"] = msz
+
+    return df
+
 def impute_basement_area_333(df):
     mask = (df["Id"] == 333) & \
             (df["BsmtFinType2"].astype(str) == "NA")
@@ -151,4 +167,5 @@ def clean_data(df):
     df = impute_basement_features(df)
     df = impute_garage_2127(df)
     df = impute_basement_area_333(df)
+    df = impute_mszoning(df)
     return df

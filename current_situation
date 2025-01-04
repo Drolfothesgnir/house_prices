@@ -174,5 +174,22 @@ Current situation #7:
 Current situation #8:
     I've imputed and cleaned basement and garage features, with group medians
     based on particular observations data, since there were only few of them.
-    Also some basement features were actually consistence, and problem was in my criterion.
+    Also some basement features were actually consistent, and problem was in my criterion.
     Now I need to impute test set variables.
+
+Current situation #9:
+    I've tried to investigate missingness of MSZoning in the test set. I've tried to fit CatBoost and RF and Log Reg but there is 
+    class imbalance in the response so I haven't figured out much. Instead I've just checked conditional probabilities of
+    MSZoning given "Neighborhood", "BldgType", "LotArea_Cat", "MSSubClass" and "Condition1".
+    Here is the summary:
+              Neighborhood_IDOTRR  Neighborhood_Mitchel  BldgType_1Fam  LotArea_Cat_Very Large  MSSubClass_30  MSSubClass_20  MSSubClass_70  Condition1_Norm  Condition1_Artery
+    MSZoning                                                                                                                                                                   
+    C (all)              0.243243              0.000000       0.007377                0.003425       0.028986       0.003731       0.016667         0.006349           0.000000
+    FV                   0.000000              0.000000       0.031148                0.003425       0.000000       0.024254       0.000000         0.050794           0.000000
+    RH                   0.000000              0.000000       0.007377                0.000000       0.014493       0.005597       0.050000         0.009524           0.020833
+    RL                   0.000000              0.897959       0.840164                0.962329       0.478261       0.947761       0.500000         0.791270           0.541667
+    RM                   0.756757              0.102041       0.113934                0.030822       0.478261       0.018657       0.433333         0.142063           0.437500
+
+    I believe Neighborhood is main predictor of zone type, so I will use neighborhood based predictions for the missing data,
+    except Id=2217, where MSSubClass-based MSZoning probability is ~95% RL.
+ 
