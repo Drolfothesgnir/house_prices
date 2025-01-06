@@ -198,6 +198,24 @@ def impute_exterior_2152(df):
 
     return df
 
+def impute_kitchen_qual_1556(df):
+    mask = (df["Id"] == 1556) & \
+            (df["KitchenQual"].isna())
+
+    if mask.any():
+        df.loc[mask, "KitchenQual"] = "TA"
+
+    return df
+
+def impute_sale_type_2490(df):
+    mask = (df["Id"] == 2490) & \
+            (df["SaleType"].isna())
+
+    if mask.any():
+        df.loc[mask, "SaleType"] = "WD"
+
+    return df
+
 def clean_data(df):
     df = fix_electrical_1380(df)
     df = fix_garage_type(df)
@@ -210,4 +228,6 @@ def clean_data(df):
     df = impute_utilities(df)
     df = impute_functional(df)
     df = impute_exterior_2152(df)
+    df = impute_kitchen_qual_1556(df)
+    df = impute_sale_type_2490(df)
     return df

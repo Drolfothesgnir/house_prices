@@ -246,3 +246,15 @@ Current situation #11:
         ImStucc            0            0
 
     So VinylSd was chosen for both exterior types
+
+Current situation #12:
+    I've explored house in the test set with missing KitchenQual. It is in poor condition and medium 
+    quality with moderate deductions. it has kitchen since KitchenAbvGr is 1. I've crosstabed 
+    KitchenQual vs OverallQual, OverallCond and Functional. all of the tables suggest TA for KitchenQual.
+    So I decided to impute missing KitchenQual with TA.
+
+    I've explored house in the test which has missing SaleType. I've crosstabed SaleType against 
+    SaleCondition and YrSold. both tables have WD as most common SaleType for characteristics of this house. 
+    The house is average with no unusual features. So I will use WD as imputation value.
+
+    Now I finnally can start to clean LotFrontage.
