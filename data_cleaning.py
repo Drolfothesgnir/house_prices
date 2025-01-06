@@ -187,6 +187,17 @@ def impute_functional(df):
 
     return df
 
+def impute_exterior_2152(df):
+    mask = (df["Id"] == 2152) & \
+            (df["Exterior1st"].isna()) & \
+            (df["Exterior2nd"].isna())
+
+    if mask.any():
+        df.loc[mask, "Exterior1st"] = "VinylSd"
+        df.loc[mask, "Exterior2nd"] = "VinylSd"
+
+    return df
+
 def clean_data(df):
     df = fix_electrical_1380(df)
     df = fix_garage_type(df)
@@ -198,4 +209,5 @@ def clean_data(df):
     df = impute_mszoning(df)
     df = impute_utilities(df)
     df = impute_functional(df)
+    df = impute_exterior_2152(df)
     return df

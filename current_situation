@@ -214,4 +214,35 @@ Current situation #10:
     domain knowledge. Maybe I'm not smart enough to see relationships in the data. My main predictor is OverallCond. It's 1
     for 2474, so I've used Maj1 Functional for it, which means serious damage, but not completely devastated. For 2217 OverallCond
     is 5, which suggests that functionality of the house is typical (Typ).
-    
+
+Current situation #11:
+    I've investigated missing Exterior1st and Excterior2nd. The fact that both Exterior1st and Excterior2nd are missing
+    in the same house bothers me. at the same moment it's weird to have NAs in the places since there are categories
+    like 'Other' which cover any exterior type. Also if the exterior was severely damaged its ExterCond would be Po. 
+    So i think it's a data entry error.
+    I decided to find all houses built OR remodeled within 5 years of the house,
+    from the same neighborhood, and with same exterior quality and condition,
+    and take their modes for Exterior1st and Exterior2nd to impute missing values.
+    Here is the result:
+        Exterior1st  Exterior2nd
+        VinylSd           12           12
+        MetalSd            7            7
+        Wd Sdng            4            4
+        WdShing            3            0
+        Stucco             1            1
+        Plywood            1            1
+        HdBoard            1            1
+        Wd Shng            0            3
+        Stone              0            0
+        Other              0            0
+        AsbShng            0            0
+        AsphShn            0            0
+        CmentBd            0            0
+        CemntBd            0            0
+        CBlock             0            0
+        BrkFace            0            0
+        BrkComm            0            0
+        Brk Cmn            0            0
+        ImStucc            0            0
+
+    So VinylSd was chosen for both exterior types
