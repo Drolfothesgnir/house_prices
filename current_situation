@@ -258,3 +258,14 @@ Current situation #12:
     The house is average with no unusual features. So I will use WD as imputation value.
 
     Now I finnally can start to clean LotFrontage.
+
+Current situation #13:
+    Restoring LotFrontage. log(LotFrontage) and log(LotArea) has clear relationship, but with unequal 
+    variances. Through ANOVA, I've found out that BldgType and Neighborhood shown both significant 
+    relationships with LotFrontage and variance explanation. LotShape and LotConfig have significant 
+    relationships with LotFrontage. I've performed missingness patterns analysis. LotFrontage is missing
+    not in random. I've performed Chi-squared tests for independence of LotFrontage and categorical 
+    variables. Neighborhood and lot configuration impact missingness. I've created RF based imputer
+    which predicts log(LotFrontage) with log(LotArea),  BldgType, Neighborhood, LotShape, LotConfig, 
+    LandContour, YearBuilt and OverallQual. The model has RMSE of 1.1827 feet, which is not bad. I've
+    used it to impute missing LotFrontage data.

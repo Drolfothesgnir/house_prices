@@ -1,4 +1,5 @@
-from data_consistency_check import check_basement_consistency
+from .data_consistency_check import check_data_consistency
+from .LotFrontage import impute_lot_frontage
 
 def fix_electrical_1380(df):
     # imputation of single Electrical value 
@@ -70,7 +71,7 @@ def impute_detchd_garage_2127(df):
     return df
 
 def impute_basement_features(df):
-    basement_features_consistent = check_basement_consistency(df)["basement_features_consistent"]
+    basement_features_consistent = check_data_consistency(df)["basement_features_consistent"]
     df.loc[~basement_features_consistent & (df["BsmtExposure"].astype(str) == "NA"), "BsmtExposure"] = "No"
     df.loc[~basement_features_consistent & (df["BsmtCond"].astype(str) == "NA"), "BsmtCond"] = "TA"
     
@@ -230,4 +231,5 @@ def clean_data(df):
     df = impute_exterior_2152(df)
     df = impute_kitchen_qual_1556(df)
     df = impute_sale_type_2490(df)
+    df = impute_lot_frontage(df)
     return df
