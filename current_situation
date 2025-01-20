@@ -269,3 +269,56 @@ Current situation #13:
     which predicts log(LotFrontage) with log(LotArea),  BldgType, Neighborhood, LotShape, LotConfig, 
     LandContour, YearBuilt and OverallQual. The model has RMSE of 1.1827 feet, which is not bad. I've
     used it to impute missing LotFrontage data.
+
+Current situation #14:
+    I've calculated neighborhood-based entropy for the following features "MSSubClass", "BldgType",
+    "HouseStyle", "OverallQual", "RoofStyle", "Exterior1st", "GarageType". I've done that to see how 
+    heterogeneous are the neigborhoods regarding house features. Here are the results:
+        Most heterogeneous neighborhoods:
+           Neighborhood  total_entropy  house_count
+        15      Edwards       9.610099          100
+        7       OldTown       8.722382          113
+        2       Crawfor       8.543410           51
+        13       IDOTRR       7.910597           37
+        4       Mitchel       7.648498           49
+        
+        Least heterogeneous neighborhoods:
+           Neighborhood  total_entropy  house_count
+        3       NoRidge       4.405948           41
+        20      NPkVill       2.359269            9
+        22       BrDale       2.162116           16
+        21      Blmngtn       1.742951           17
+        24      Blueste       0.693147            2
+
+    I've decided to perform 4 EDAs: 3 for 3 most heterogeneous neighborhoods and 1 for all other combined.
+
+    Let's outline an EDA plan:
+    
+    1. Edwards (100 houses):
+    - Focus on diverse housing types (high MSSubClass entropy)
+    - Analyze the variety of exterior materials
+    - Study relationship between housing type and price
+    - Look for any patterns in garage types
+    - Check if quality varies significantly by housing type
+    
+    2. OldTown (113 houses):
+    - Deep dive into house styles and their price impact
+    - Analyze quality variations
+    - Study if there are price patterns by housing age/type
+    - Check if certain combinations of features are more valuable
+    
+    3. Crawfor (51 houses):
+    - Careful analysis due to smaller sample size
+    - Look for any outliers that might affect modeling
+    - Study the exterior features and their price impact
+    - Analyze if certain housing types command premium prices
+    - Check for any unique feature combinations
+    
+    4. Other Neighborhoods (Combined):
+    - More standardized analysis
+    - Focus on common patterns and relationships
+    - Look for consistent price factors
+    - Identify any outliers
+    - Study if certain features have consistent impact across neighborhoods
+
+    Plan was developed by Claude AI.

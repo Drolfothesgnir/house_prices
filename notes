@@ -141,3 +141,42 @@
 - Often indicates DIY work or budget constraints
 - Might need renovation or upgrading
 - Generally detracts from home value
+
+Key features:
+    A property's appraisal value is influenced by recent sales of similar properties and by current
+    market trends.
+    The home's amenities, including the number of bedrooms and bathrooms, the floor plan's functionality, 
+    and the square footage are also key factors.
+
+ Buyers interested in purchasing single family residential property would rather compare price, in this case, the Sales Comparison Approach (market analysis approach) would be more applicable.
+
+ there is section called "Mass appraisal and automated valuation models". it states that ML models are accurate in a very homogeneous area and can be inaccurate otherwise. 
+
+I can use the following strategy:
+  The goal is to measure neighborhood heterogeneity by calculating entropy for key features:
+
+  1. For each neighborhood, we calculate entropy of:
+    - MSSubClass (housing type diversity)
+    - BldgType (building type diversity)
+    - HouseStyle (style diversity)
+    - OverallQual (quality range)
+    - RoofStyle (architectural diversity)
+    - Exterior1st (materials diversity)
+    - GarageType (garage diversity)
+
+  2. Higher entropy would indicate:
+    - More diverse housing types in the neighborhood
+    - Mix of quality levels
+    - Various architectural styles
+    - Different construction periods
+
+  3. Lower entropy would indicate:
+    - More uniform housing types
+    - Similar quality levels
+    - Consistent architectural styles
+    - Houses built in same period
+
+  This information would help us:
+  1. Identify which neighborhoods need special treatment in our model
+  2. Potentially create separate models for high-entropy neighborhoods
+  3. Guide our feature engineering strategy
