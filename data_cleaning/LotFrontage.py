@@ -1,11 +1,29 @@
-import sys
-import os
+# import os
+# import sys
+# from pathlib import Path
 
-# Get the parent directory
-parent_dir = os.path.abspath(os.path.join(os.getcwd(), '..'))
+# # Get the notebook's directory
+# notebook_dir = os.getcwd()
 
-# Add it to sys.path
-sys.path.insert(0, parent_dir)
+# # Add the notebook directory and its parent to Python path
+# sys.path.append(notebook_dir)
+# sys.path.append(str(Path(notebook_dir).parent))
+
+# # Function to add all subdirectories to Python path
+# def add_subdirs_to_path():
+#     for root, dirs, files in os.walk(notebook_dir):
+#         for dir_name in dirs:
+#             full_path = os.path.join(root, dir_name)
+#             if full_path not in sys.path:
+#                 sys.path.append(full_path)
+
+# # Add all subdirectories
+# add_subdirs_to_path()
+
+# # Function to get absolute path for any relative path
+# def get_abs_path(relative_path):
+#     return str(Path(relative_path).absolute())
+    
 # First, let's train the model once
 from utils.load_data import load_data
 from feature_engineering import engineer_features
@@ -13,7 +31,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
-df = load_data("data/train.csv")
+df = load_data("../data/train.csv")
 df = engineer_features(df)
 df = df[~df["lot_frontage_missing"] == 1] 
 

@@ -1,7 +1,36 @@
+# import os
+# import sys
+# from pathlib import Path
+
+# # Get the notebook's directory
+# notebook_dir = os.getcwd()
+
+# # Add the notebook directory and its parent to Python path
+# sys.path.append(notebook_dir)
+# sys.path.append(str(Path(notebook_dir).parent))
+
+# # Function to add all subdirectories to Python path
+# def add_subdirs_to_path():
+#     for root, dirs, files in os.walk(notebook_dir):
+#         for dir_name in dirs:
+#             full_path = os.path.join(root, dir_name)
+#             if full_path not in sys.path:
+#                 sys.path.append(full_path)
+
+# # Add all subdirectories
+# add_subdirs_to_path()
+
+# from .path_utils import resolve_data_file
+
+# Function to get absolute path for any relative path
+# def get_abs_path(relative_path):
+#     return str(Path(relative_path).absolute())
 import pandas as pd
+from utils.path_utils import get_data_path
 
 def load_data(pathname):
-    df = pd.read_csv(pathname)
+    # pathname = resolve_data_file(filename)
+    df = pd.read_csv(get_data_path(pathname))
     # converting int64 columns to int32
     int_vars = df.select_dtypes(include=["int64"]).columns
 
