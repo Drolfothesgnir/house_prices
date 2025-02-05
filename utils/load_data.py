@@ -1,32 +1,6 @@
-# import os
-# import sys
-# from pathlib import Path
-
-# # Get the notebook's directory
-# notebook_dir = os.getcwd()
-
-# # Add the notebook directory and its parent to Python path
-# sys.path.append(notebook_dir)
-# sys.path.append(str(Path(notebook_dir).parent))
-
-# # Function to add all subdirectories to Python path
-# def add_subdirs_to_path():
-#     for root, dirs, files in os.walk(notebook_dir):
-#         for dir_name in dirs:
-#             full_path = os.path.join(root, dir_name)
-#             if full_path not in sys.path:
-#                 sys.path.append(full_path)
-
-# # Add all subdirectories
-# add_subdirs_to_path()
-
-# from .path_utils import resolve_data_file
-
-# Function to get absolute path for any relative path
-# def get_abs_path(relative_path):
-#     return str(Path(relative_path).absolute())
 import pandas as pd
 from utils.path_utils import get_data_path
+
 
 def load_data(pathname):
     # pathname = resolve_data_file(filename)
@@ -77,139 +51,113 @@ def load_data(pathname):
         "BsmtUnfSF",
         "BsmtFullBath",
         "BsmtHalfBath",
-        "TotalBsmtSF"
+        "TotalBsmtSF",
     ]
     for var in num_vars:
         df[var] = df[var].fillna(0)
 
     # filling missing garage year build values with house date built
-    df['GarageYrBlt'] = df["GarageYrBlt"].fillna(df["YearBuilt"]).astype('int32')
+    df["GarageYrBlt"] = df["GarageYrBlt"].fillna(df["YearBuilt"]).astype("int32")
 
     # converting ordinal categories
     ordered_cats = {
         "LotShape": pd.CategoricalDtype(
-            categories=['Reg', 'IR1', 'IR2', 'IR3'],
-            ordered=True
-
+            categories=["Reg", "IR1", "IR2", "IR3"], ordered=True
         ),
         "Utilities": pd.CategoricalDtype(
-            categories=['ELO', 'NoSeWa', 'NoSewr', 'AllPub'],
-            ordered=True
+            categories=["ELO", "NoSeWa", "NoSewr", "AllPub"], ordered=True
         ),
         "LandSlope": pd.CategoricalDtype(
-            categories=["Gtl", "Mod", "Sev"],
-            ordered=True
+            categories=["Gtl", "Mod", "Sev"], ordered=True
         ),
-        "OverallQual": pd.CategoricalDtype(
-            categories=list(range(1, 11)),
-            ordered=True
-        ),
-        "OverallCond": pd.CategoricalDtype(
-            categories=list(range(1, 11)),
-            ordered=True
-        ),
+        "OverallQual": pd.CategoricalDtype(categories=list(range(1, 11)), ordered=True),
+        "OverallCond": pd.CategoricalDtype(categories=list(range(1, 11)), ordered=True),
         "ExterQual": pd.CategoricalDtype(
-            categories=["Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "ExterCond": pd.CategoricalDtype(
-            categories=["Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "BsmtQual": pd.CategoricalDtype(
-            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "BsmtCond": pd.CategoricalDtype(
-            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "BsmtExposure": pd.CategoricalDtype(
-            categories=["NA", "No", "Mn", "Av", "Gd"],
-            ordered=True
+            categories=["NA", "No", "Mn", "Av", "Gd"], ordered=True
         ),
         "BsmtFinType1": pd.CategoricalDtype(
-            categories=["GLQ",
-                        "ALQ",
-                        "BLQ",
-                        "Rec",
-                        "LwQ",
-                        "Unf",
-                        "NA"],
-            ordered=True
+            categories=[
+                "NA",
+                "Unf",
+                "LwQ",
+                "Rec",
+                "BLQ",
+                "ALQ",
+                "GLQ",
+            ],
+            ordered=True,
         ),
         "BsmtFinType2": pd.CategoricalDtype(
-            categories=["GLQ",
-                        "ALQ",
-                        "BLQ",
-                        "Rec",
-                        "LwQ",
-                        "Unf",
-                        "NA"],
-            ordered=True
+            categories=[
+                "NA",
+                "Unf",
+                "LwQ",
+                "Rec",
+                "BLQ",
+                "ALQ",
+                "GLQ",
+            ],
+            ordered=True,
         ),
         "HeatingQC": pd.CategoricalDtype(
-            categories=["Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "KitchenQual": pd.CategoricalDtype(
-            categories=["Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "FireplaceQu": pd.CategoricalDtype(
-            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["NA", "Po", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "Functional": pd.CategoricalDtype(
-            categories=[
-                "Typ",
-                "Min1",
-                "Min2",
-                "Mod",
-                "Maj1",
-                "Maj2",
-                "Sev",
-                "Sal"
-            ],
-            ordered=True
+            categories=["Typ", "Min1", "Min2", "Mod", "Maj1", "Maj2", "Sev", "Sal"],
+            ordered=True,
         ),
         "GarageFinish": pd.CategoricalDtype(
-            categories=["NA", "Unf", "RFn", "Fin"],
-            ordered=True
+            categories=["NA", "Unf", "RFn", "Fin"], ordered=True
         ),
         "GarageQual": pd.CategoricalDtype(
             categories=[
-                "Ex",
-                "Gd",
-                "TA",
-                "Fa",
+                "NA",
                 "Po",
-                "NA"
+                "Fa",
+                "TA",
+                "Gd",
+                "Ex",
             ],
-            ordered=True
+            ordered=True,
         ),
         "GarageCond": pd.CategoricalDtype(
             categories=[
-                "Ex",
-                "Gd",
-                "TA",
-                "Fa",
+                "NA",
                 "Po",
-                "NA"
+                "Fa",
+                "TA",
+                "Gd",
+                "Ex",
             ],
-            ordered=True
+            ordered=True,
         ),
         "PoolQC": pd.CategoricalDtype(
-            categories=["NA", "Fa", "TA", "Gd", "Ex"],
-            ordered=True
+            categories=["NA", "Fa", "TA", "Gd", "Ex"], ordered=True
         ),
         "Fence": pd.CategoricalDtype(
-            categories=["NA", "MnWw", "GdWo", "MnPrv", "GdPrv"],
-            ordered=True
-        )
+            categories=["NA", "MnWw", "GdWo", "MnPrv", "GdPrv"], ordered=True
+        ),
     }
 
-    for (var, dtype) in ordered_cats.items():
+    for var, dtype in ordered_cats.items():
         df[var] = df[var].astype(dtype)
 
     # converting nominal categories

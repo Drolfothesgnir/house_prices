@@ -6,7 +6,7 @@ __pycache__/
 *$py.class
 .venv
 
-**/*.txt
+# **/*.txt
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
