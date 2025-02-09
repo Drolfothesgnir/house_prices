@@ -322,3 +322,12 @@ Current situation #14:
     - Study if certain features have consistent impact across neighborhoods
 
     Plan was developed by Claude AI.
+
+Current situation #15:
+    The plan with dividing data into high\low-entropyn neighborhoods is stupid, so I just started EDA differently. I've fit 
+    Ridge, Lasso and RF to find most important features. Also I've calculated Spearman correlation coefficient
+    to achieve the same. GrLivArea, TotalBsmtSF, OverallQual and Neighborhood are considered the most important.
+    Based on those results I've started to investigating relationships between most important features and price. 
+    I've cut OverallQual and OverallCond variables into grouped_qual and grouped_cond variables respectively,
+    to make classes more balanced. Log of GrLivArea + TotalBsmtSF has 0.804 correlation with Log of Sale Price. 
+    Also there is clear price separation by grouped_qual.

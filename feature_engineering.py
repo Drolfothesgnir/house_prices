@@ -147,6 +147,7 @@ def engineer_features(df):
     df = augment_by_has_3sn_porch(df)
     df = augment_by_has_screen_porch(df)
     df = augment_by_has_pool(df)
+    df = augment_by_has_fence(df)
     df = augment_by_has_misc_feature(df)
     df = augment_by_log_sale_price(df)
     df = augment_by_grouped_overall_qual_cond(df)
