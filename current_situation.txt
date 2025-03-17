@@ -331,3 +331,8 @@ Current situation #15:
     I've cut OverallQual and OverallCond variables into grouped_qual and grouped_cond variables respectively,
     to make classes more balanced. Log of GrLivArea + TotalBsmtSF has 0.804 correlation with Log of Sale Price. 
     Also there is clear price separation by grouped_qual.
+
+Current situation #16:
+    I've decided to make notes on fixing imbalanced categorical variables first. I've regrouped MSSubClass. It had 5 classes
+    with too few observations. I've put those observations into new class 500. Now MSSubClass is more balanced with minimum 
+    predictivity loss.

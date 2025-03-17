@@ -70,6 +70,31 @@ def augment_by_has_misc_feature(df):
     return df
 
 
+def augment_by_total_living_area(df):
+    df["total_liv_area"] = df["TotalBsmtSF"] + df["GrLivArea"]
+    return df
+
+
+def augment_by_premium_nb(df):
+    df["premium_nb"] = np.where(
+        df["Neighborhood"].isin(["NoRidge", "StoneBr", "NridgHt"]), 1, 0
+    )
+    return df
+
+
+def augment_by_has_bad_garage(df):
+    df["has_bad_garage"] = np.where(
+        (
+            df["GarageType"].isin(["NA", "Detchd"])
+            | (df["GarageCond_grouped"].astype(str) == "Low")
+        ),
+        1,
+        0,
+    )
+    df["has_bad_garage"] = df["has_bad_garage"].astype("category")
+    return df
+
+
 def augment_by_grouped_overall_qual_cond(df):
     bins = [0, 4, 7, 10]
     labels = ["Low", "Average", "High"]
@@ -136,6 +161,16 @@ def augment_by_grouped_qual(df):
     return df
 
 
+def augment_by_grouped_mssubclass(df):
+    def regroup_mssubclass_corrected(mssubclass):
+        if mssubclass in [40, 180, 45, 75, 85]:
+            return 500
+        return mssubclass
+
+    df["MSSubClass_regrouped"] = df["MSSubClass"].apply(regroup_mssubclass_corrected)
+    return df
+
+
 def engineer_features(df):
     df = augment_by_lot_frontage_missing(df)
     df = augment_by_has_garage(df)
@@ -150,8 +185,12 @@ def engineer_features(df):
     df = augment_by_has_fence(df)
     df = augment_by_has_misc_feature(df)
     df = augment_by_log_sale_price(df)
+    df = augment_by_total_living_area(df)
+    df = augment_by_premium_nb(df)
     df = augment_by_grouped_overall_qual_cond(df)
     df = augment_by_grouped_cond(df)
     df = augment_by_grouped_qual(df)
+    df = augment_by_has_bad_garage(df)
+    df = augment_by_grouped_mssubclass(df)
 
     return df
